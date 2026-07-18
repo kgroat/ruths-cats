@@ -22,7 +22,7 @@ async function addDeviceMotionEvent(
   }
 }
 
-export function useShakeHandler(onShake: () => void, threshold = 15) {
+export function useShakeHandler(onShake: () => void, threshold = 20) {
   useEffect(() => {
     const abortController = new AbortController();
 

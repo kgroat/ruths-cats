@@ -52,6 +52,7 @@ export function Cursor({ seed }: { seed?: number }) {
   }, [handleMouseMove, imageIndex]);
 
   useShakeHandler(() => {
+    setLoadingIndex(imageIndex);
     setImageIndex(Math.floor(Math.random() * imageUrls.length));
   });
 

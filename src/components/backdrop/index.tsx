@@ -30,6 +30,7 @@ export function Backdrop({ children, seed }: { children?: React.ReactNode; seed?
   }, []);
 
   useShakeHandler(() => {
+    setIsLoading(true);
     setImageIndex(Math.floor(Math.random() * imageUrls.length));
   });
 
