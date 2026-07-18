@@ -38,7 +38,7 @@ export function Backdrop({ children, seed }: { children?: React.ReactNode; seed?
       <img
         src={imageUrls[imageIndex]}
         alt="backdrop"
-        className="block w-full h-full absolute inset-0 object-cover"
+        className="block w-full h-full absolute inset-0 object-cover pointer-events-none"
         onLoad={() => setIsLoading(false)}
       />
       
