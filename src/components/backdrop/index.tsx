@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useShakeHandler } from "#/hooks/useShakeHandler";
+import { Spinner } from "../ui/spinner";
 
 const imagesObj = import.meta.glob('./images/*.{png,jpg,jpeg,svg,gif,webp}', {
   eager: true,
@@ -13,12 +14,14 @@ const imageUrls = Object.values(imagesObj).map((module) => (
 
 export function Backdrop({ children, seed }: { children?: React.ReactNode; seed?: number }) {
   const [imageIndex, setImageIndex] = useState(seed ? seed % imageUrls.length : Math.floor(Math.random() * imageUrls.length));
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const abortController = new AbortController();
 
     window.addEventListener('keypress', (event) => {
       if (event.key === 'b') {
+        setIsLoading(true);
         setImageIndex((prevIndex) => (prevIndex + 1) % imageUrls.length);
       }
     }, { signal: abortController.signal });
@@ -31,10 +34,19 @@ export function Backdrop({ children, seed }: { children?: React.ReactNode; seed?
   });
 
   return (
-    <div
-      className='bg-center bg-cover min-h-screen min-w-screen flex flex-col'
-      style={{ backgroundImage: `url(${imageUrls[imageIndex]})` }}
-    >
+    <div className='min-h-screen min-w-screen relative'>
+      <img
+        src={imageUrls[imageIndex]}
+        alt="backdrop"
+        className="block w-full h-full absolute inset-0 object-cover"
+        onLoad={() => setIsLoading(false)}
+      />
+      
+      {isLoading && (
+        <div className='bg-gray-500/50 absolute inset-0 flex items-center justify-center'>
+          <Spinner />
+        </div>
+      )}
       {children}
     </div>
   );

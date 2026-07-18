@@ -14,7 +14,7 @@ const imageUrls = Object.values(imagesObj).map((module) => (
 
 export function Cursor({ seed }: { seed?: number }) {
   const [imageIndex, setImageIndex] = useState(seed ? seed % imageUrls.length : Math.floor(Math.random() * imageUrls.length));
-  const [loadingIndex, setLoadingIndex] = useState<number | null>(imageIndex);
+  const [loadingIndex, setLoadingIndex] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const imgRef = useRef<HTMLImageElement | null>(null);
   const mousePositionRef = useRef({ x: 0, y: 0 });
@@ -58,7 +58,7 @@ export function Cursor({ seed }: { seed?: number }) {
   return (
     <div
       ref={containerRef}
-      className='absolute z-10 pointer-events-none'
+      className='absolute z-10 pointer-events-none overflow-visible'
     >
       <img
         ref={imgRef}
