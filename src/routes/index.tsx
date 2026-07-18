@@ -21,7 +21,8 @@ function Home() {
         Meow meow meow.
       </div>
       <div className='text-lg text-center fixed bottom-10 w-full'>
-        Press <code>c</code> for next cat.  Press <code>b</code> for next backdrop.
+        <div>Press <code>c</code> for next cat.</div>
+        <div>Press <code>b</code> for next backdrop.</div>
       </div>
     </Backdrop>
   );
