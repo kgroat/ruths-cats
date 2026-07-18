@@ -30,8 +30,11 @@ export function Backdrop({ children, seed }: { children?: React.ReactNode; seed?
   }, []);
 
   useShakeHandler(() => {
+    const newIndex = Math.floor(Math.random() * imageUrls.length);
+    if (newIndex === imageIndex) return;
+
     setIsLoading(true);
-    setImageIndex(Math.floor(Math.random() * imageUrls.length));
+    setImageIndex(newIndex);
   });
 
   return (
