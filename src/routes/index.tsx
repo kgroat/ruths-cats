@@ -9,7 +9,7 @@ export const Route = createFileRoute('/')({
     cursorSeed: Math.floor(Math.random() * 1000000),
   }),
   component: Home,
-})
+});
 
 function Home() {
   const { backdropSeed, cursorSeed } = Route.useLoaderData()
@@ -24,5 +24,5 @@ function Home() {
         Press <code>c</code> for next cat.  Press <code>b</code> for next backdrop.
       </div>
     </Backdrop>
-  )
+  );
 }
